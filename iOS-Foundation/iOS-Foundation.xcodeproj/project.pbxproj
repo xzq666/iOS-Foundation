@@ -14,6 +14,7 @@
 		F01E81D7241F78D3009CC20B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01E81D6241F78D3009CC20B /* Assets.xcassets */; };
 		F01E81DA241F78D4009CC20B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01E81D8241F78D4009CC20B /* LaunchScreen.storyboard */; };
 		F01E81DD241F78D4009CC20B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81DC241F78D4009CC20B /* main.m */; };
+		F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		F01E81DB241F78D4009CC20B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F01E81DC241F78D4009CC20B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F01E81E4241F7F47009CC20B /* AVFoundation入门.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation入门.md"; sourceTree = "<group>"; };
+		F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechViewController.h; sourceTree = "<group>"; };
+		F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				F01E81E4241F7F47009CC20B /* AVFoundation入门.md */,
+				F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */,
+				F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */,
 			);
 			path = "01AVFoundation入门";
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				F01E81D2241F78D1009CC20B /* ViewController.m in Sources */,
 				F01E81CC241F78D1009CC20B /* AppDelegate.m in Sources */,
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
+				F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */,
 				F01E81CF241F78D1009CC20B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XZQSpeechViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -54,6 +55,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    XZQSpeechViewController *speechView = [[XZQSpeechViewController alloc]init];
+    speechView.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:speechView animated:YES completion:^{
+        
+    }];
 }
-
 @end
