@@ -29,6 +29,7 @@
 		F01E81D9241F78D4009CC20B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F01E81DB241F78D4009CC20B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F01E81DC241F78D4009CC20B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F01E81E4241F7F47009CC20B /* AVFoundation入门.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation入门.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		F01E81C9241F78D1009CC20B /* iOS-Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */,
 				F01E81CA241F78D1009CC20B /* AppDelegate.h */,
 				F01E81CB241F78D1009CC20B /* AppDelegate.m */,
 				F01E81CD241F78D1009CC20B /* SceneDelegate.h */,
@@ -74,6 +76,14 @@
 				F01E81DC241F78D4009CC20B /* main.m */,
 			);
 			path = "iOS-Foundation";
+			sourceTree = "<group>";
+		};
+		F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */ = {
+			isa = PBXGroup;
+			children = (
+				F01E81E4241F7F47009CC20B /* AVFoundation入门.md */,
+			);
+			path = "01AVFoundation入门";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
