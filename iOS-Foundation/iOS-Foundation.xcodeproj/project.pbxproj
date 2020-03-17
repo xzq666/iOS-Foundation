@@ -15,6 +15,10 @@
 		F01E81DA241F78D4009CC20B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01E81D8241F78D4009CC20B /* LaunchScreen.storyboard */; };
 		F01E81DD241F78D4009CC20B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81DC241F78D4009CC20B /* main.m */; };
 		F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */; };
+		F0DE55962420BBD9007BF97D /* XZQPlayAndRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DE55952420BBD9007BF97D /* XZQPlayAndRecordViewController.m */; };
+		F0DE559B2420BDCF007BF97D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DE559A2420BDCF007BF97D /* BaseViewController.m */; };
+		F0DE55A22420C391007BF97D /* 把故事写成我们.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */; };
+		F0DE55A42420D72D007BF97D /* AVFoundation播放和录制音频.md in Resources */ = {isa = PBXBuildFile; fileRef = F0DE55A32420D72D007BF97D /* AVFoundation播放和录制音频.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,13 @@
 		F01E81E4241F7F47009CC20B /* AVFoundation入门.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation入门.md"; sourceTree = "<group>"; };
 		F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechViewController.h; sourceTree = "<group>"; };
 		F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechViewController.m; sourceTree = "<group>"; };
+		F0DE55942420BBD9007BF97D /* XZQPlayAndRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQPlayAndRecordViewController.h; sourceTree = "<group>"; };
+		F0DE55952420BBD9007BF97D /* XZQPlayAndRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQPlayAndRecordViewController.m; sourceTree = "<group>"; };
+		F0DE55992420BDCF007BF97D /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		F0DE559A2420BDCF007BF97D /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		F0DE559E2420BFE4007BF97D /* High-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "High-PrefixHeader.pch"; sourceTree = "<group>"; };
+		F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "把故事写成我们.mp3"; sourceTree = "<group>"; };
+		F0DE55A32420D72D007BF97D /* AVFoundation播放和录制音频.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation播放和录制音频.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +76,10 @@
 		F01E81C9241F78D1009CC20B /* iOS-Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				F0DE559F2420C362007BF97D /* Resource */,
+				F0DE55972420BD55007BF97D /* Common */,
 				F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */,
+				F0DE55902420AB33007BF97D /* 02AVFoundation播放和录制音频 */,
 				F01E81CA241F78D1009CC20B /* AppDelegate.h */,
 				F01E81CB241F78D1009CC20B /* AppDelegate.m */,
 				F01E81CD241F78D1009CC20B /* SceneDelegate.h */,
@@ -89,6 +103,58 @@
 				F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */,
 			);
 			path = "01AVFoundation入门";
+			sourceTree = "<group>";
+		};
+		F0DE55902420AB33007BF97D /* 02AVFoundation播放和录制音频 */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE55A32420D72D007BF97D /* AVFoundation播放和录制音频.md */,
+				F0DE55942420BBD9007BF97D /* XZQPlayAndRecordViewController.h */,
+				F0DE55952420BBD9007BF97D /* XZQPlayAndRecordViewController.m */,
+			);
+			path = "02AVFoundation播放和录制音频";
+			sourceTree = "<group>";
+		};
+		F0DE55972420BD55007BF97D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE559C2420BE4F007BF97D /* pch */,
+				F0DE55982420BDB6007BF97D /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F0DE55982420BDB6007BF97D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE55992420BDCF007BF97D /* BaseViewController.h */,
+				F0DE559A2420BDCF007BF97D /* BaseViewController.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		F0DE559C2420BE4F007BF97D /* pch */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE559E2420BFE4007BF97D /* High-PrefixHeader.pch */,
+			);
+			name = pch;
+			sourceTree = "<group>";
+		};
+		F0DE559F2420C362007BF97D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE55A02420C36C007BF97D /* audio */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		F0DE55A02420C36C007BF97D /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */,
+			);
+			path = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +216,8 @@
 			files = (
 				F01E81DA241F78D4009CC20B /* LaunchScreen.storyboard in Resources */,
 				F01E81D7241F78D3009CC20B /* Assets.xcassets in Resources */,
+				F0DE55A42420D72D007BF97D /* AVFoundation播放和录制音频.md in Resources */,
+				F0DE55A22420C391007BF97D /* 把故事写成我们.mp3 in Resources */,
 				F01E81D5241F78D1009CC20B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +233,8 @@
 				F01E81CC241F78D1009CC20B /* AppDelegate.m in Sources */,
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
 				F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */,
+				F0DE55962420BBD9007BF97D /* XZQPlayAndRecordViewController.m in Sources */,
+				F0DE559B2420BDCF007BF97D /* BaseViewController.m in Sources */,
 				F01E81CF241F78D1009CC20B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +377,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QX8283AUA8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iOS-Foundation/Common/High-PrefixHeader.pch";
 				INFOPLIST_FILE = "iOS-Foundation/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,6 +396,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QX8283AUA8;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iOS-Foundation/Common/High-PrefixHeader.pch";
 				INFOPLIST_FILE = "iOS-Foundation/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

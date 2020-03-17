@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "XZQSpeechViewController.h"
+#import "XZQPlayAndRecordViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleArr = @[@"01 AVFoundation入门"];
+    self.titleArr = @[@"01 AVFoundation入门", @"02 AVFoundation播放和录制视频"];
     [self.view addSubview:self.tableView];
 }
 
@@ -55,10 +56,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XZQSpeechViewController *speechView = [[XZQSpeechViewController alloc]init];
-    speechView.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:speechView animated:YES completion:^{
-        
-    }];
+    switch (indexPath.row) {
+        case 0: {
+            XZQSpeechViewController *speech = [[XZQSpeechViewController alloc]init];
+            speech.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:speech animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        case 1: {
+            XZQPlayAndRecordViewController *playAndRecord = [[XZQPlayAndRecordViewController alloc] init];
+            playAndRecord.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:playAndRecord animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 @end

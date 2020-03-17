@@ -7,7 +7,6 @@
 //
 
 #import "XZQSpeechViewController.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface XZQSpeechViewController ()
 
@@ -35,7 +34,7 @@
                                 @"人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。人不学，不知义。为人子，方少时。亲师友，习礼仪。香九龄，能温席。孝于亲，所当执。融四岁，能让梨。弟于长，宜先知。"];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame= CGRectMake(20, 100, 100, 40);
+    btn.frame= CGRectMake(50, 100, 100, 40);
     [btn setTitle:@"文本到语音" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:btn];
