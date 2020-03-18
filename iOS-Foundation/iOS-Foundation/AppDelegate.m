@@ -20,7 +20,7 @@
     // 配置音频会话
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *error;
-    if (![audioSession setCategory:AVAudioSessionCategoryPlayback error:&error]) {
+    if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error]) {
         NSLog(@"Category error :%@", [error localizedDescription]);
     }
     if (![audioSession setActive:YES error:&error]) {

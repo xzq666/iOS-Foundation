@@ -12,6 +12,8 @@
 
 // 播放音频
 @property(nonatomic,strong) AVAudioPlayer *audioPlayer;
+// 录制音频
+@property(nonatomic,strong) AVAudioRecorder *audioRecorder;
 
 @end
 
@@ -27,6 +29,20 @@
     [self initPlay:audioUrl];
     
     [self createRecordBtn];
+    // 配置录音保存的文件
+    NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"1.caf"];
+    NSURL *recorderUrl = [NSURL fileURLWithPath:path];
+    NSDictionary *settings = @{
+        AVFormatIDKey: @(kAudioFormatAppleIMA4),  // 写入内容的音频格式
+        AVSampleRateKey: @22500.0f,  // 录音器采样率
+        AVNumberOfChannelsKey: @1  // 音频通道数
+    };
+    [self initRecorder:recorderUrl withSettings:settings];
+    
+    // 添加中断通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
+    // 添加线路改变通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
 }
 
 // 初始化音频播放
@@ -40,11 +56,6 @@
             [self.audioPlayer setNumberOfLoops:-1];
         }
     }
-    
-    // 添加中断通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
-    // 添加线路改变通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
 }
 
 - (void)handleInterruption:(NSNotification *)notification {
@@ -127,11 +138,23 @@
 
 // 停止播放音频
 - (void)stopClick {
-    if (self.audioPlayer && [self.audioPlayer isPlaying]) {
+    if (self.audioPlayer) {
         NSLog(@"停止播放");
         [self.audioPlayer stop];
         // 如果停止我希望下次播放从头开始
         self.audioPlayer.currentTime = 0;
+    }
+}
+
+- (void)initRecorder:(NSURL *)recorderUrl withSettings:(NSDictionary *)settings {
+    if (recorderUrl) {
+        NSError *error;
+        self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:recorderUrl settings:settings error:&error];
+        if (self.audioRecorder) {
+            [self.audioRecorder prepareToRecord];
+        } else {
+            NSLog(@"init error: %@", [error localizedDescription]);
+        }
     }
 }
 
@@ -142,10 +165,66 @@
     recordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:recordBtn];
     [recordBtn addTarget:self action:@selector(recordClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 暂停
+    UIButton *pauseRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    pauseRecordBtn.frame= CGRectMake(200, 150, 100, 40);
+    [pauseRecordBtn setTitle:@"暂停" forState:UIControlStateNormal];
+    pauseRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:pauseRecordBtn];
+    [pauseRecordBtn addTarget:self action:@selector(pauseRecordClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 停止
+    UIButton *stopRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    stopRecordBtn.frame= CGRectMake(200, 200, 100, 40);
+    [stopRecordBtn setTitle:@"停止" forState:UIControlStateNormal];
+    stopRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:stopRecordBtn];
+    [stopRecordBtn addTarget:self action:@selector(stopRecordClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 播放录音
+    UIButton *playRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    playRecordBtn.frame= CGRectMake(200, 250, 100, 40);
+    [playRecordBtn setTitle:@"播放录音" forState:UIControlStateNormal];
+    playRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:playRecordBtn];
+    [playRecordBtn addTarget:self action:@selector(playRecord) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)recordClick {
-    
+    if (self.audioRecorder && !self.audioRecorder.isRecording) {
+        [self.audioRecorder record];
+    }
+}
+
+- (void)pauseRecordClick {
+    if (self.audioRecorder && self.audioRecorder.isRecording) {
+        NSLog(@"-->%f", self.audioRecorder.currentTime);
+        [self.audioRecorder pause];
+    }
+}
+
+- (void)stopRecordClick {
+    if (self.audioRecorder) {
+        [self.audioRecorder stop];
+    }
+}
+
+- (void)playRecord {
+    NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"1.caf"];
+    NSURL *recorderUrl = [NSURL fileURLWithPath:path];
+    if (recorderUrl) {
+        if (self.audioPlayer) {
+            self.audioPlayer = nil;
+        }
+        [self initPlay:recorderUrl];
+        [self playClick];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
 }
 
 @end

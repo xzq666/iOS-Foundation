@@ -80,6 +80,7 @@
 				F0DE55972420BD55007BF97D /* Common */,
 				F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */,
 				F0DE55902420AB33007BF97D /* 02AVFoundation播放和录制音频 */,
+				F0F5BA2024220D9B00EEA7F9 /* 03AVFoundation资源和元数据 */,
 				F01E81CA241F78D1009CC20B /* AppDelegate.h */,
 				F01E81CB241F78D1009CC20B /* AppDelegate.m */,
 				F01E81CD241F78D1009CC20B /* SceneDelegate.h */,
@@ -155,6 +156,13 @@
 				F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */,
 			);
 			path = audio;
+			sourceTree = "<group>";
+		};
+		F0F5BA2024220D9B00EEA7F9 /* 03AVFoundation资源和元数据 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "03AVFoundation资源和元数据";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

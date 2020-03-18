@@ -111,3 +111,39 @@ AVAudioSessionPortBluetoothA2DP ：A2DP协议式的蓝牙设备
 AVAudioSessionPortHDMI ：高保真多媒体接口设备
 AVAudioSessionPortAirPlay ：远程AirPlay设备
 AVAudioSessionPortBluetoothLE ：蓝牙低电量输出设备
+
+
+### 使用AVAudioRecorder录制音频
+
+AVAudioRecorder构建于Audio Queue Services之上，可以在iOS设备上使用这个类从内置的麦克风录制音频，也可以从外部音频设备进行录制，比如数字音频接口或USB麦克风等。
+
+1、创建AVAudioRecorder
+- (nullable instancetype)initWithURL:(NSURL *)url settings:(NSDictionary<NSString *, id> *)settings error:(NSError **)outError;
+url：音频流写入文件的本地文件URL，
+settings：包含用于配置录音会话信息，
+error：捕捉初始化阶段错误。
+成功创建AVAudioRecorder实例，建议调用prepareToRecord。与AVAudioPlayer的prepareToPlay方法类似，执行底层Audio Queue初始化的必要过程。在URL参数指定位置创建一个文件，将录制启动时的延时降到最小。
+配置录音会话参数settings：
+1）AVFormatIDKey -- 写入内容的音频格式，常用的音频格式支持的值如下
+    kAudioFormatLinearPCM
+    kAudioFormatMPEG4AAC
+    kAudioFormatAppleLossless
+    kAudioFormatAppleIMA4
+    kAudioFormatiLBC
+    kAudioFormatULaw
+其中，kAudioFormatLinearPCM会将未压缩的音频流写入文件中，这种格式的保真度最高，相应的文件也最大。AAC或Apple IMA4的压缩格式会显著缩小文件，还能保证高质量的音频内容。
+2）AVSampleRateKey -- 定义录音器采样率。采样率定义了对输入的模拟音频信号每一秒内的采样数。采样率决定音频的质量及最终文件大小。
+一般标准的采样率：8k、16k、22.5k、44.1k。
+3）AVNumbeOfChannelsKey -- 定义记录音频通道数。默认值1，单声道录制。设置2为立体声录制。除非使用外部硬件进行录制，一般应该创建单声道录音。'
+
+2、控制录音过程
+record -- 开始或继续录音、stop -- 停止录音，并关闭文件、pause -- 暂停录音。
+
+
+### 使用Audio Metering
+
+AVAudioPlayer和AVAudioRecorder中最强大和最实用的功能是对音频进行测量，Audio Metering可让开发者读取音频的平均分贝和峰值分贝数据，并使这些数据以可视化方式将声音大小呈献给用户。
+
+通过averagePowerForChannel:和peakPowerForChannel:获取平均分贝和峰值分贝，返回一个用于表示声音分贝(dB)等级的浮点值，这个值的范围是从表示最大分贝的0dB(full scale)到最小分贝或静音的-160dB。
+
+获取这两个值之前，要先设置属性meteringEnabled为YES，才能对音频进行测量。另外，每当需要读取值时，需要先调用updateMeters方法才能获取最新的值。
