@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "XZQSpeechViewController.h"
 #import "XZQPlayAndRecordViewController.h"
+#import "XZQLibraryAndMetaDataViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleArr = @[@"01 AVFoundation入门", @"02 AVFoundation播放和录制视频"];
+    self.titleArr = @[@"01 AVFoundation入门", @"02 AVFoundation播放和录制视频", @"03 AVFoundation资源和元数据"];
     [self.view addSubview:self.tableView];
 }
 
@@ -70,6 +71,15 @@
             XZQPlayAndRecordViewController *playAndRecord = [[XZQPlayAndRecordViewController alloc] init];
             playAndRecord.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:playAndRecord animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        case 2: {
+            XZQLibraryAndMetaDataViewController *libraryAndMetaData = [[XZQLibraryAndMetaDataViewController alloc] init];
+            libraryAndMetaData.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:libraryAndMetaData animated:YES completion:^{
                 
             }];
             break;
