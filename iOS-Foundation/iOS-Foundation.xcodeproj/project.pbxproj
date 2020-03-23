@@ -20,6 +20,8 @@
 		F0DE559B2420BDCF007BF97D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DE559A2420BDCF007BF97D /* BaseViewController.m */; };
 		F0DE55A22420C391007BF97D /* 把故事写成我们.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */; };
 		F0DE55A42420D72D007BF97D /* AVFoundation播放和录制音频.md in Resources */ = {isa = PBXBuildFile; fileRef = F0DE55A32420D72D007BF97D /* AVFoundation播放和录制音频.md */; };
+		F0E825B124288F4300D4953E /* XZQVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E825B024288F4300D4953E /* XZQVideoPlayerController.m */; };
+		F0E825B82428977B00D4953E /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F0E825B72428977B00D4953E /* test.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,10 @@
 		F0DE559E2420BFE4007BF97D /* High-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "High-PrefixHeader.pch"; sourceTree = "<group>"; };
 		F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "把故事写成我们.mp3"; sourceTree = "<group>"; };
 		F0DE55A32420D72D007BF97D /* AVFoundation播放和录制音频.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation播放和录制音频.md"; sourceTree = "<group>"; };
+		F0E10A802424A65C00AE383E /* AVFoundation视频播放.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation视频播放.md"; sourceTree = "<group>"; };
+		F0E825AF24288F4300D4953E /* XZQVideoPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQVideoPlayerController.h; sourceTree = "<group>"; };
+		F0E825B024288F4300D4953E /* XZQVideoPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQVideoPlayerController.m; sourceTree = "<group>"; };
+		F0E825B72428977B00D4953E /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		F0F5BA2124220E1900EEA7F9 /* AVFoundation资源和元数据.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation资源和元数据.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +91,7 @@
 				F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */,
 				F0DE55902420AB33007BF97D /* 02AVFoundation播放和录制音频 */,
 				F0F5BA2024220D9B00EEA7F9 /* 03AVFoundation资源和元数据 */,
+				F0E10A7F2424A63A00AE383E /* 04AVFoundation视频播放 */,
 				F01E81CA241F78D1009CC20B /* AppDelegate.h */,
 				F01E81CB241F78D1009CC20B /* AppDelegate.m */,
 				F01E81CD241F78D1009CC20B /* SceneDelegate.h */,
@@ -149,6 +156,7 @@
 		F0DE559F2420C362007BF97D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F0E825B224288FB300D4953E /* video */,
 				F0DE55A02420C36C007BF97D /* audio */,
 			);
 			path = Resource;
@@ -160,6 +168,24 @@
 				F0DE55A12420C391007BF97D /* 把故事写成我们.mp3 */,
 			);
 			path = audio;
+			sourceTree = "<group>";
+		};
+		F0E10A7F2424A63A00AE383E /* 04AVFoundation视频播放 */ = {
+			isa = PBXGroup;
+			children = (
+				F0E10A802424A65C00AE383E /* AVFoundation视频播放.md */,
+				F0E825AF24288F4300D4953E /* XZQVideoPlayerController.h */,
+				F0E825B024288F4300D4953E /* XZQVideoPlayerController.m */,
+			);
+			path = "04AVFoundation视频播放";
+			sourceTree = "<group>";
+		};
+		F0E825B224288FB300D4953E /* video */ = {
+			isa = PBXGroup;
+			children = (
+				F0E825B72428977B00D4953E /* test.mp4 */,
+			);
+			path = video;
 			sourceTree = "<group>";
 		};
 		F0F5BA2024220D9B00EEA7F9 /* 03AVFoundation资源和元数据 */ = {
@@ -230,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01E81DA241F78D4009CC20B /* LaunchScreen.storyboard in Resources */,
+				F0E825B82428977B00D4953E /* test.mp4 in Resources */,
 				F01E81D7241F78D3009CC20B /* Assets.xcassets in Resources */,
 				F0DE55A42420D72D007BF97D /* AVFoundation播放和录制音频.md in Resources */,
 				F0DE55A22420C391007BF97D /* 把故事写成我们.mp3 in Resources */,
@@ -249,6 +276,7 @@
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
 				F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */,
 				F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */,
+				F0E825B124288F4300D4953E /* XZQVideoPlayerController.m in Sources */,
 				F0DE55962420BBD9007BF97D /* XZQPlayAndRecordViewController.m in Sources */,
 				F0DE559B2420BDCF007BF97D /* BaseViewController.m in Sources */,
 				F01E81CF241F78D1009CC20B /* SceneDelegate.m in Sources */,

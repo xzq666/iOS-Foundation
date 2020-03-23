@@ -17,10 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *close = [UIButton buttonWithType:UIButtonTypeCustom];
     close.frame= CGRectMake(20, 40, 100, 40);
     [close setTitle:@"关闭" forState:UIControlStateNormal];
+    [close setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     close.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:close];
     [close addTarget:self action:@selector(closeClick) forControlEvents:UIControlEventTouchUpInside];
