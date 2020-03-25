@@ -12,6 +12,7 @@
 #import "XZQLibraryAndMetaDataViewController.h"
 #import "XZQVideoPlayerController.h"
 #import "XZQAVkitController.h"
+#import "XZQVideoCaptureController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,7 +30,8 @@
                       @"02 AVFoundation播放和录制视频",
                       @"03 AVFoundation资源和元数据",
                       @"04 AVFoundation视频播放",
-                      @"05 AVKit用法"];
+                      @"05 AVKit用法",
+                      @"06 AVFoundation捕捉媒体"];
     [self.view addSubview:self.tableView];
 }
 
@@ -104,6 +106,15 @@
             XZQAVkitController *avKit = [[XZQAVkitController alloc] init];
             avKit.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:avKit animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        case 5: {
+            XZQVideoCaptureController *videoCapture = [[XZQVideoCaptureController alloc] init];
+            videoCapture.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:videoCapture animated:YES completion:^{
                 
             }];
             break;

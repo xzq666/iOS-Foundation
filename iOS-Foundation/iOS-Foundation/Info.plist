@@ -24,6 +24,8 @@
 	<string>APP需要访问您的iPod</string>
 	<key>NSCameraUsageDescription</key>
 	<string>APP需要访问您的相机</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>APP需要访问您的麦克风</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>APP需要添加文件至您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>

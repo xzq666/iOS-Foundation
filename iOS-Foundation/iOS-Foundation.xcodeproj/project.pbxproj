@@ -16,6 +16,7 @@
 		F01E81DD241F78D4009CC20B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81DC241F78D4009CC20B /* main.m */; };
 		F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */; };
 		F07850C92429DA7D00898FC9 /* XZQAVkitController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07850C82429DA7D00898FC9 /* XZQAVkitController.m */; };
+		F0A1F3C9242B46C000203A07 /* XZQVideoCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A1F3C8242B46C000203A07 /* XZQVideoCaptureController.m */; };
 		F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1F82224234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m */; };
 		F0DE55962420BBD9007BF97D /* XZQPlayAndRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DE55952420BBD9007BF97D /* XZQPlayAndRecordViewController.m */; };
 		F0DE559B2420BDCF007BF97D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DE559A2420BDCF007BF97D /* BaseViewController.m */; };
@@ -41,9 +42,12 @@
 		F01E81E4241F7F47009CC20B /* AVFoundation入门.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation入门.md"; sourceTree = "<group>"; };
 		F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechViewController.h; sourceTree = "<group>"; };
 		F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechViewController.m; sourceTree = "<group>"; };
+		F03A504B242B2B71009ECAE1 /* AVFoundation捕捉媒体.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation捕捉媒体.md"; sourceTree = "<group>"; };
 		F07850C62429D77900898FC9 /* AVFoundation之AVKit用法.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation之AVKit用法.md"; sourceTree = "<group>"; };
 		F07850C72429DA7D00898FC9 /* XZQAVkitController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQAVkitController.h; sourceTree = "<group>"; };
 		F07850C82429DA7D00898FC9 /* XZQAVkitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQAVkitController.m; sourceTree = "<group>"; };
+		F0A1F3C7242B46C000203A07 /* XZQVideoCaptureController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQVideoCaptureController.h; sourceTree = "<group>"; };
+		F0A1F3C8242B46C000203A07 /* XZQVideoCaptureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQVideoCaptureController.m; sourceTree = "<group>"; };
 		F0D1F82124234D1200F40ECF /* XZQLibraryAndMetaDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQLibraryAndMetaDataViewController.h; sourceTree = "<group>"; };
 		F0D1F82224234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQLibraryAndMetaDataViewController.m; sourceTree = "<group>"; };
 		F0DE55942420BBD9007BF97D /* XZQPlayAndRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQPlayAndRecordViewController.h; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 				F0F5BA2024220D9B00EEA7F9 /* 03AVFoundation资源和元数据 */,
 				F0E10A7F2424A63A00AE383E /* 04AVFoundation视频播放 */,
 				F07850C52429D73F00898FC9 /* 05AVFoundation之AVKit用法 */,
+				F03A504A242B2B4D009ECAE1 /* 06AVFoundation捕捉媒体 */,
 				F01E81CA241F78D1009CC20B /* AppDelegate.h */,
 				F01E81CB241F78D1009CC20B /* AppDelegate.m */,
 				F01E81CD241F78D1009CC20B /* SceneDelegate.h */,
@@ -120,6 +125,16 @@
 				F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */,
 			);
 			path = "01AVFoundation入门";
+			sourceTree = "<group>";
+		};
+		F03A504A242B2B4D009ECAE1 /* 06AVFoundation捕捉媒体 */ = {
+			isa = PBXGroup;
+			children = (
+				F03A504B242B2B71009ECAE1 /* AVFoundation捕捉媒体.md */,
+				F0A1F3C7242B46C000203A07 /* XZQVideoCaptureController.h */,
+				F0A1F3C8242B46C000203A07 /* XZQVideoCaptureController.m */,
+			);
+			path = "06AVFoundation捕捉媒体";
 			sourceTree = "<group>";
 		};
 		F07850C52429D73F00898FC9 /* 05AVFoundation之AVKit用法 */ = {
@@ -290,6 +305,7 @@
 				F01E81CC241F78D1009CC20B /* AppDelegate.m in Sources */,
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
 				F07850C92429DA7D00898FC9 /* XZQAVkitController.m in Sources */,
+				F0A1F3C9242B46C000203A07 /* XZQVideoCaptureController.m in Sources */,
 				F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */,
 				F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */,
 				F0E825B124288F4300D4953E /* XZQVideoPlayerController.m in Sources */,
@@ -440,6 +456,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/iOS-Foundation/Common/High-PrefixHeader.pch";
 				INFOPLIST_FILE = "iOS-Foundation/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +476,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/iOS-Foundation/Common/High-PrefixHeader.pch";
 				INFOPLIST_FILE = "iOS-Foundation/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

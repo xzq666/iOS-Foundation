@@ -99,6 +99,7 @@
     UIButton *playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     playBtn.frame= CGRectMake(50, 100, 100, 40);
     [playBtn setTitle:@"播放" forState:UIControlStateNormal];
+    [playBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     playBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:playBtn];
     [playBtn addTarget:self action:@selector(playClick) forControlEvents:UIControlEventTouchUpInside];
@@ -107,6 +108,7 @@
     UIButton *pauseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     pauseBtn.frame= CGRectMake(50, 150, 100, 40);
     [pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
+    [pauseBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     pauseBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:pauseBtn];
     [pauseBtn addTarget:self action:@selector(pauseClick) forControlEvents:UIControlEventTouchUpInside];
@@ -115,6 +117,7 @@
     UIButton *stopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     stopBtn.frame= CGRectMake(50, 200, 100, 40);
     [stopBtn setTitle:@"停止" forState:UIControlStateNormal];
+    [stopBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     stopBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:stopBtn];
     [stopBtn addTarget:self action:@selector(stopClick) forControlEvents:UIControlEventTouchUpInside];
@@ -162,6 +165,7 @@
     UIButton *recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     recordBtn.frame= CGRectMake(200, 100, 100, 40);
     [recordBtn setTitle:@"录制" forState:UIControlStateNormal];
+    [recordBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     recordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:recordBtn];
     [recordBtn addTarget:self action:@selector(recordClick) forControlEvents:UIControlEventTouchUpInside];
@@ -170,6 +174,7 @@
     UIButton *pauseRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     pauseRecordBtn.frame= CGRectMake(200, 150, 100, 40);
     [pauseRecordBtn setTitle:@"暂停" forState:UIControlStateNormal];
+    [pauseRecordBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     pauseRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:pauseRecordBtn];
     [pauseRecordBtn addTarget:self action:@selector(pauseRecordClick) forControlEvents:UIControlEventTouchUpInside];
@@ -178,6 +183,7 @@
     UIButton *stopRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     stopRecordBtn.frame= CGRectMake(200, 200, 100, 40);
     [stopRecordBtn setTitle:@"停止" forState:UIControlStateNormal];
+    [stopRecordBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     stopRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:stopRecordBtn];
     [stopRecordBtn addTarget:self action:@selector(stopRecordClick) forControlEvents:UIControlEventTouchUpInside];
@@ -186,6 +192,7 @@
     UIButton *playRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     playRecordBtn.frame= CGRectMake(200, 250, 100, 40);
     [playRecordBtn setTitle:@"播放录音" forState:UIControlStateNormal];
+    [playRecordBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     playRecordBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:playRecordBtn];
     [playRecordBtn addTarget:self action:@selector(playRecord) forControlEvents:UIControlEventTouchUpInside];

@@ -36,6 +36,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame= CGRectMake(50, 100, 100, 40);
     [btn setTitle:@"文本到语音" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:btn];
     [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
