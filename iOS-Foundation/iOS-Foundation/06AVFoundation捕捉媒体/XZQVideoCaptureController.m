@@ -7,6 +7,8 @@
 //
 
 #import "XZQVideoCaptureController.h"
+#import "XZQSimpleCaptureController.h"
+#import "XZQPhotoVideoCaptureController.h"
 
 @interface XZQVideoCaptureController ()
 
@@ -20,41 +22,39 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // 创建捕捉会话AVCaptureSession
-    self.captureSession = [[AVCaptureSession alloc] init];
-    // 创建捕捉设备AVCaptureDevice
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    // 创建捕捉输入
-    NSError *error;
-    AVCaptureDeviceInput *input = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
-    // 将捕捉输入添加到会话中
-    if ([self.captureSession canAddInput:input]) {
-        [self.captureSession addInput:input];
-    }
-    // 创建捕捉输出
-    AVCapturePhotoOutput *output = [[AVCapturePhotoOutput alloc] init];
-    // 将捕捉输出添加到会话中
-    if ([self.captureSession canAddOutput:output]) {
-        [self.captureSession addOutput:output];
-    }
-    // 创建图像预览层
-    AVCaptureVideoPreviewLayer *layer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
-    layer.frame = self.view.frame;
-    [self.view.layer addSublayer:layer];
-    // 开始会话
-    [self.captureSession startRunning];
-    
-    UIButton *close = [UIButton buttonWithType:UIButtonTypeCustom];
-    close.frame= CGRectMake(20, 40, 100, 40);
-    [close setTitle:@"关闭" forState:UIControlStateNormal];
-    [close setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
-    close.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    [self.view addSubview:close];
-    [close addTarget:self action:@selector(closeClick) forControlEvents:UIControlEventTouchUpInside];
+    [self createUI];
 }
 
-- (void)closeClick {
-    [self dismissViewControllerAnimated:YES completion:^{
+- (void)createUI {
+    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(20, 100, 100, 30);
+    [btn1 setTitle:@"简单视频捕捉" forState:UIControlStateNormal];
+    [btn1 setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    btn1.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    [self.view addSubview:btn1];
+    [btn1 addTarget:self action:@selector(btn1Click) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn2.frame = CGRectMake(160, 100, 100, 30);
+    [btn2 setTitle:@"简单拍照视频" forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    btn2.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    [self.view addSubview:btn2];
+    [btn2 addTarget:self action:@selector(btn2Click) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)btn1Click {
+    XZQSimpleCaptureController *simpleCapture = [[XZQSimpleCaptureController alloc] init];
+    simpleCapture.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:simpleCapture animated:YES completion:^{
+        
+    }];
+}
+
+- (void)btn2Click {
+    XZQPhotoVideoCaptureController *photoVideoCapture = [[XZQPhotoVideoCaptureController alloc] init];
+    photoVideoCapture.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:photoVideoCapture animated:YES completion:^{
         
     }];
 }
