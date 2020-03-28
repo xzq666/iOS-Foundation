@@ -7,8 +7,9 @@
 //
 
 #import "XZQPhotoVideoCaptureController.h"
+#import <Photos/Photos.h>
 
-@interface XZQPhotoVideoCaptureController ()<XZQVideoCaptureDelegate, AVCapturePhotoCaptureDelegate>
+@interface XZQPhotoVideoCaptureController ()<XZQVideoCaptureDelegate, AVCapturePhotoCaptureDelegate, AVCaptureFileOutputRecordingDelegate>
 
 // 捕捉会话
 @property(nonatomic,strong) AVCaptureSession *session;
@@ -22,6 +23,9 @@
 
 // 可用视频捕捉设备数量
 @property(nonatomic,assign) NSUInteger camreaCount;
+
+// 视频录制存储路径
+@property(nonatomic,strong) NSURL *outputUrl;
 
 @end
 
@@ -72,6 +76,22 @@
     capturePhotoBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:capturePhotoBtn];
     [capturePhotoBtn addTarget:self action:@selector(capturePhoto) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *startCaptureVideoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    startCaptureVideoBtn.frame= CGRectMake(20, 220, 100, 40);
+    [startCaptureVideoBtn setTitle:@"开始录制视频" forState:UIControlStateNormal];
+    [startCaptureVideoBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    startCaptureVideoBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:startCaptureVideoBtn];
+    [startCaptureVideoBtn addTarget:self action:@selector(startCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *stopCaptureVideoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    stopCaptureVideoBtn.frame= CGRectMake(140, 220, 100, 40);
+    [stopCaptureVideoBtn setTitle:@"停止录制视频" forState:UIControlStateNormal];
+    [stopCaptureVideoBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    stopCaptureVideoBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:stopCaptureVideoBtn];
+    [stopCaptureVideoBtn addTarget:self action:@selector(stopCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
 }
 
 // 创建捕捉会话并完成输入输出添加
@@ -222,6 +242,8 @@
     if (connection.isVideoOrientationSupported) {
         connection.videoOrientation = [self currentVideoOrientation];
     }
+    NSDictionary *setDic = @{AVVideoCodecKey:AVVideoCodecTypeJPEG};
+    self.outputSettings = [AVCapturePhotoSettings photoSettingsWithFormat:setDic];
     [self.photoOutput capturePhotoWithSettings:self.outputSettings delegate:self];
 }
 
@@ -262,6 +284,89 @@
             break;
     }
     return orientation;
+}
+
+// 开始录制视频
+- (void)startCaptureVideo {
+    if (![self.movieFileOutput isRecording]) {
+        NSLog(@"开始录制视频");
+        AVCaptureConnection *videoConnection = [self.movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
+        if ([videoConnection isVideoOrientationSupported]) {
+            videoConnection.videoOrientation = [self currentVideoOrientation];
+        }
+        // 标识视频录入时稳定音频流的接受，这里设置为自动
+        // 支持视频稳定可以显著提升捕捉到的视频质量
+        if ([videoConnection isVideoStabilizationSupported]) {
+            videoConnection.preferredVideoStabilizationMode = YES;
+        }
+        AVCaptureDevice *device = [self activeCamera];
+        if (device.isSmoothAutoFocusEnabled) {
+            // 摄像头可以进行平滑对焦模式的操作，减慢摄像头镜头对焦的速度
+            // 通常情况下，用户移动拍摄时摄像头会尝试快速自动对焦，这会在捕捉视频中出现脉冲式效果
+            // 当平滑对焦时，会降低对焦操作的速率，从而提供更加自然的视频录制效果
+            // 改变聚焦模式
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                device.smoothAutoFocusEnabled = YES;
+                [device unlockForConfiguration];
+            } else {
+                [self.delegate deviceConfigurationFailedWithError:error];
+            }
+        }
+        self.outputUrl = [self videoSaveURL];
+        [self.movieFileOutput startRecordingToOutputFileURL:self.outputUrl recordingDelegate:self];
+    }
+}
+
+// 在代理回调中拿到录制视频的地址
+- (void)captureOutput:(AVCaptureFileOutput *)output didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray<AVCaptureConnection *> *)connections error:(NSError *)error {
+    if (error) {
+        [self.delegate mediaCaptureFailedWithError:error];
+    } else {
+        NSLog(@"videoUrl-->%@", outputFileURL);
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputFileURL];
+            NSLog(@"保存视频成功");
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            [self.delegate assetLibraryWriteFailedWithError:error];
+        }];
+    }
+    self.outputUrl = nil;
+}
+
+- (void)mediaCaptureFailedWithError:(NSError *)error {
+    NSLog(@"视频录制失败: %@", error);
+}
+
+- (void)assetLibraryWriteFailedWithError:(NSError *)error {
+    NSLog(@"录制视频保存失败: %@", error);
+}
+
+// 停止录制视频
+- (void)stopCaptureVideo {
+    if ([self.movieFileOutput isRecording]) {
+        NSLog(@"停止录制视频");
+        [self.movieFileOutput stopRecording];
+    }
+}
+
+// 设置录制视频存储路径
+- (NSURL *)videoSaveURL {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    // 查找目录，返回指定范围内的指定名称的目录的路径集合
+    NSString *directionPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"camera_movie"];
+    NSLog(@"path: %@", directionPath);
+    if (![fileManager fileExistsAtPath:directionPath]) {
+        // 若不存在目录则创建目录
+        [fileManager createDirectoryAtPath:directionPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    // 保存的视频文件路径
+    NSString *filePath = [directionPath stringByAppendingPathComponent:@"camera_movie.mov"];
+    if ([fileManager fileExistsAtPath:filePath]) {
+        // 文件已存在先移除
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
+    return [NSURL fileURLWithPath:filePath];
 }
 
 - (void)closeClick {

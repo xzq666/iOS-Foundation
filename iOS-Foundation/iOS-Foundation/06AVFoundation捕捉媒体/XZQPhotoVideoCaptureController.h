@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol XZQVideoCaptureDelegate <NSObject>
 
 - (void)deviceConfigurationFailedWithError:(NSError *)error;
+- (void)mediaCaptureFailedWithError:(NSError *)error;
+- (void)assetLibraryWriteFailedWithError:(NSError *)error;
 
 @end
 

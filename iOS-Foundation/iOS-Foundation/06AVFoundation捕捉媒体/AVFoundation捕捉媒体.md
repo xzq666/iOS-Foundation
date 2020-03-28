@@ -109,3 +109,11 @@ previewLayer.frame = self.view.frame;
 4、捕获静态图片
 AVCaptureConnection，当创建一个会话并添加捕捉设备输入和捕捉输出时，会话自动建立输入和输出的链接，按需选择信号流线路。访问这些连接，可以更好地对发送到输出端的数据进行控制。
 CMSampleBuffer是由CoreMedia框架定义的CoreFoundation对象，可以用来保存捕捉到的图片数据。图片格式根据输出对象设定的格式决定。
+
+5、录制视频
+视频内容捕捉，设置捕捉会话，添加名为AVCaptureMovieFileOutput的输出。将QuickTime影片捕捉到磁盘，这个类的大多数核心功能继承于超类AVCaptureFileOutput。
+通常当QuickTime准备发布时，影片头的元数据处于文件的开始位置，有利于视频播放器快速读取头包含的信息。
+录制的过程中，直到所有的样本都完成捕捉后才能创建信息头。
+
+6、将图片和视频保存到相册
+将拍摄到的图片和视频通过系统库保存到相册。从iOS8.0开始支持的Photos/Photos.h库来实现图片和视频的保存。
