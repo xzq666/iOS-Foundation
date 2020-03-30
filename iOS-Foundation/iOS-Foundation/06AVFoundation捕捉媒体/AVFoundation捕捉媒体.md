@@ -117,3 +117,14 @@ CMSampleBuffer是由CoreMedia框架定义的CoreFoundation对象，可以用来�
 
 6、将图片和视频保存到相册
 将拍摄到的图片和视频通过系统库保存到相册。从iOS8.0开始支持的Photos/Photos.h库来实现图片和视频的保存。
+
+7、关于闪光灯和手电筒的设置
+设备后面的LED灯，当拍摄静态图片时作为闪光灯，当拍摄视频时用作连续灯光(手电筒)。捕捉设备的flashMode和torchMode。
+AVCapture(Flash|Torch)ModeAuto：基于周围环境光照情况自动关闭或打开
+AVCapture(Flash|Torch)ModeOff：总是关闭
+AVCapture(Flash|Torch)ModeOn：总是打开
+修改闪光灯或手电筒设置的时候，一定要先锁定设备再修改，否则会挂掉。
+flashMode用于拍摄静态图片时（相机）进行的闪光灯设置。
+
+8、其他一些设置
+还有许多可以设置的属性，比如聚焦、曝光等等，设置起来差不多，首先要检测设备(摄像头)是否支持相应功能，锁定设备，然后设置相关属性。

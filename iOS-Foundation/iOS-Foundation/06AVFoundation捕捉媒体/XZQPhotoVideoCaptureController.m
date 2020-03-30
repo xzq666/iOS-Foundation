@@ -21,6 +21,9 @@
 // 当前视频文件输出
 @property(nonatomic,strong) AVCaptureMovieFileOutput *movieFileOutput;
 
+// 视频捕捉屏幕预览层
+@property(nonatomic,strong) AVCaptureVideoPreviewLayer *layer;
+
 // 可用视频捕捉设备数量
 @property(nonatomic,assign) NSUInteger camreaCount;
 
@@ -92,6 +95,57 @@
     stopCaptureVideoBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:stopCaptureVideoBtn];
     [stopCaptureVideoBtn addTarget:self action:@selector(stopCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *openFlashOrTorch = [UIButton buttonWithType:UIButtonTypeCustom];
+    openFlashOrTorch.frame= CGRectMake(20, 280, 80, 40);
+    [openFlashOrTorch setTitle:@"打开闪光灯" forState:UIControlStateNormal];
+    [openFlashOrTorch setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    openFlashOrTorch.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:openFlashOrTorch];
+    [openFlashOrTorch addTarget:self action:@selector(openCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *autoFlashOrTorch = [UIButton buttonWithType:UIButtonTypeCustom];
+    autoFlashOrTorch.frame= CGRectMake(120, 280, 80, 40);
+    [autoFlashOrTorch setTitle:@"自动闪光灯" forState:UIControlStateNormal];
+    [autoFlashOrTorch setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    autoFlashOrTorch.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:autoFlashOrTorch];
+    [autoFlashOrTorch addTarget:self action:@selector(autoCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *closeFlashOrTorch = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeFlashOrTorch.frame= CGRectMake(220, 280, 80, 40);
+    [closeFlashOrTorch setTitle:@"关闭闪光灯" forState:UIControlStateNormal];
+    [closeFlashOrTorch setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    closeFlashOrTorch.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.view addSubview:closeFlashOrTorch];
+    [closeFlashOrTorch addTarget:self action:@selector(closeCaptureVideo) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)openCaptureVideo {
+//    if ([self cameraHasFlash] && [self flashMode] != AVCaptureFlashModeOn) {
+//        [self setFlashMode:AVCaptureFlashModeOn];
+//    }
+    if ([self cameraHasTorch] && [self torchMode] != AVCaptureTorchModeOn) {
+        [self setTorchMode:AVCaptureTorchModeOn];
+    }
+}
+
+- (void)autoCaptureVideo {
+//    if ([self cameraHasFlash] && [self flashMode] != AVCaptureFlashModeAuto) {
+//        [self setFlashMode:AVCaptureFlashModeAuto];
+//    }
+    if ([self cameraHasTorch] && [self torchMode] != AVCaptureTorchModeAuto) {
+        [self setTorchMode:AVCaptureTorchModeAuto];
+    }
+}
+
+- (void)closeCaptureVideo {
+//    if ([self cameraHasFlash] && [self flashMode] != AVCaptureFlashModeOff) {
+//        [self setFlashMode:AVCaptureFlashModeOff];
+//    }
+    if ([self cameraHasTorch] && [self torchMode] != AVCaptureTorchModeOff) {
+        [self setTorchMode:AVCaptureTorchModeOff];
+    }
 }
 
 // 创建捕捉会话并完成输入输出添加
@@ -133,9 +187,9 @@
         [self.session addOutput:self.movieFileOutput];
     }
     // 添加捕捉预览层
-    AVCaptureVideoPreviewLayer *layer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    layer.frame = self.view.frame;
-    [self.view.layer addSublayer:layer];
+    self.layer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    self.layer.frame = self.view.frame;
+    [self.view.layer addSublayer:self.layer];
 }
 
 // 切换摄像头
@@ -367,6 +421,98 @@
         [fileManager removeItemAtPath:filePath error:nil];
     }
     return [NSURL fileURLWithPath:filePath];
+}
+
+// 判断拍摄静态图片时是否有可用闪光灯
+- (BOOL)cameraHasFlash {
+    return [[self activeCamera] hasFlash];
+}
+
+// 返回当前拍摄静态图片闪光灯模式
+- (AVCaptureFlashMode)flashMode {
+    return self.outputSettings.flashMode;
+}
+
+// 设置当前拍摄静态图片的闪光灯
+- (void)setFlashMode:(AVCaptureFlashMode)flashMode {
+    AVCaptureDevice *device = [self activeCamera];
+    if ([self.photoOutput supportedFlashModes]) {
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            self.outputSettings.flashMode = flashMode;
+            [self.photoOutput capturePhotoWithSettings:self.outputSettings delegate:self];
+            [device unlockForConfiguration];
+        } else {
+            [self.delegate deviceConfigurationFailedWithError:error];
+        }
+    }
+}
+
+// 判断录制视频时是否有可用闪光灯
+- (BOOL)cameraHasTorch {
+    return [[self activeCamera] hasTorch];
+}
+
+// 返回当前录制视频闪光灯模式
+- (AVCaptureTorchMode)torchMode {
+    return [[self activeCamera] torchMode];
+}
+
+// 设置当前录制视频的闪光灯
+- (void)setTorchMode:(AVCaptureTorchMode)torchMode {
+    AVCaptureDevice *device = [self activeCamera];
+    if ([device isTorchModeSupported:torchMode]) {
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            device.torchMode = torchMode;
+            [device unlockForConfiguration];
+        } else {
+            [self.delegate deviceConfigurationFailedWithError:error];
+        }
+    }
+}
+
+// 判断当前激活的摄像头是否支持对焦
+- (BOOL)cameraSupportsTapToFocus {
+    return [[self activeCamera] isFocusPointOfInterestSupported];
+}
+
+// 根据点的坐标进行对焦
+// 这里点的坐标已经从屏幕坐标转换为捕捉设备坐标
+- (void)focusAtPoint:(CGPoint)point {
+    AVCaptureDevice *device = [self activeCamera];
+    if ([self cameraSupportsTapToFocus]) {
+        // 确认是否支持兴趣点对焦并确认是否支持自动对焦模式。
+        // 这一模式会使用单独扫描的自动对焦，并将focusMode设置为AVCaptureFocusModeLocked
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            device.focusPointOfInterest = point;
+            device.focusMode = AVCaptureFocusModeAutoFocus;
+            [device unlockForConfiguration];
+        } else {
+            [self.delegate deviceConfigurationFailedWithError:error];
+        }
+    }
+}
+
+// 设备坐标转换为屏幕坐标
+- (CGPoint)fromDevicePoint:(CGPoint)point {
+    return [self.layer pointForCaptureDevicePointOfInterest:point];
+}
+
+// 屏幕坐标转换为设备坐标
+- (CGPoint)toDevicePoint:(CGPoint)point {
+    return [self.layer captureDevicePointOfInterestForPoint:point];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    // 获取点击点的坐标
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    NSLog(@"屏幕坐标：%f - %f", touchPoint.x, touchPoint.y);
+    CGPoint devicePoint = [self toDevicePoint:touchPoint];
+    NSLog(@"捕捉设备坐标：%f - %f", devicePoint.x, devicePoint.y);
+    // 对触碰点进行对焦
+    [self focusAtPoint:devicePoint];
 }
 
 - (void)closeClick {
