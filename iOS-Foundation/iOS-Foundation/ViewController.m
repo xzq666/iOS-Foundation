@@ -14,6 +14,7 @@
 #import "XZQAVkitController.h"
 #import "XZQVideoCaptureController.h"
 #import "XZQScanController.h"
+#import "XZQReadAndWriteMediaController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,7 +34,8 @@
                       @"04 AVFoundation视频播放",
                       @"05 AVKit用法",
                       @"06 AVFoundation捕捉媒体",
-                      @"07 AVFoundation机器码识别"];
+                      @"07 AVFoundation机器码识别",
+                      @"08 AVFoundation读取与写入媒体"];
     [self.view addSubview:self.tableView];
 }
 
@@ -126,6 +128,15 @@
             XZQScanController *scan = [[XZQScanController alloc] init];
             scan.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:scan animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        case 7: {
+            XZQReadAndWriteMediaController *readAndWriteMedia = [[XZQReadAndWriteMediaController alloc] init];
+            readAndWriteMedia.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:readAndWriteMedia animated:YES completion:^{
                 
             }];
             break;
