@@ -19,6 +19,10 @@
 		F0951043242C80FC00EEEF7C /* XZQSimpleCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0951042242C80FC00EEEF7C /* XZQSimpleCaptureController.m */; };
 		F0951046242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0951045242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m */; };
 		F0A1F3C9242B46C000203A07 /* XZQVideoCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A1F3C8242B46C000203A07 /* XZQVideoCaptureController.m */; };
+		F0C8D6BA243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C8D6B9243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m */; };
+		F0C8D6BD243C32E4008BFD45 /* CreateAudioWaveformUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C8D6BC243C32E4008BFD45 /* CreateAudioWaveformUtil.m */; };
+		F0C8D6C0243C54F1008BFD45 /* CreateAudioWaveformFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C8D6BF243C54F1008BFD45 /* CreateAudioWaveformFilter.m */; };
+		F0C8D6C3243C55E0008BFD45 /* XZQWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C8D6C2243C55E0008BFD45 /* XZQWaveformView.m */; };
 		F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1F82224234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m */; };
 		F0D25DF72434633300CADE66 /* XZQReadAndWriteMediaController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D25DF62434633300CADE66 /* XZQReadAndWriteMediaController.m */; };
 		F0D37644243310940025E233 /* XZQScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D37643243310940025E233 /* XZQScanController.m */; };
@@ -56,6 +60,14 @@
 		F0951045242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQPhotoVideoCaptureController.m; sourceTree = "<group>"; };
 		F0A1F3C7242B46C000203A07 /* XZQVideoCaptureController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQVideoCaptureController.h; sourceTree = "<group>"; };
 		F0A1F3C8242B46C000203A07 /* XZQVideoCaptureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQVideoCaptureController.m; sourceTree = "<group>"; };
+		F0C8D6B8243C2ADC008BFD45 /* XZQCreateAudioWaveformController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQCreateAudioWaveformController.h; sourceTree = "<group>"; };
+		F0C8D6B9243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQCreateAudioWaveformController.m; sourceTree = "<group>"; };
+		F0C8D6BB243C32E4008BFD45 /* CreateAudioWaveformUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAudioWaveformUtil.h; sourceTree = "<group>"; };
+		F0C8D6BC243C32E4008BFD45 /* CreateAudioWaveformUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAudioWaveformUtil.m; sourceTree = "<group>"; };
+		F0C8D6BE243C54F1008BFD45 /* CreateAudioWaveformFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAudioWaveformFilter.h; sourceTree = "<group>"; };
+		F0C8D6BF243C54F1008BFD45 /* CreateAudioWaveformFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAudioWaveformFilter.m; sourceTree = "<group>"; };
+		F0C8D6C1243C55E0008BFD45 /* XZQWaveformView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQWaveformView.h; sourceTree = "<group>"; };
+		F0C8D6C2243C55E0008BFD45 /* XZQWaveformView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQWaveformView.m; sourceTree = "<group>"; };
 		F0D1F82124234D1200F40ECF /* XZQLibraryAndMetaDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQLibraryAndMetaDataViewController.h; sourceTree = "<group>"; };
 		F0D1F82224234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQLibraryAndMetaDataViewController.m; sourceTree = "<group>"; };
 		F0D25DF42434615800CADE66 /* AVFoundation读取与写入媒体.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation读取与写入媒体.md"; sourceTree = "<group>"; };
@@ -173,6 +185,14 @@
 				F0D25DF42434615800CADE66 /* AVFoundation读取与写入媒体.md */,
 				F0D25DF52434633300CADE66 /* XZQReadAndWriteMediaController.h */,
 				F0D25DF62434633300CADE66 /* XZQReadAndWriteMediaController.m */,
+				F0C8D6B8243C2ADC008BFD45 /* XZQCreateAudioWaveformController.h */,
+				F0C8D6B9243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m */,
+				F0C8D6BB243C32E4008BFD45 /* CreateAudioWaveformUtil.h */,
+				F0C8D6BC243C32E4008BFD45 /* CreateAudioWaveformUtil.m */,
+				F0C8D6BE243C54F1008BFD45 /* CreateAudioWaveformFilter.h */,
+				F0C8D6BF243C54F1008BFD45 /* CreateAudioWaveformFilter.m */,
+				F0C8D6C1243C55E0008BFD45 /* XZQWaveformView.h */,
+				F0C8D6C2243C55E0008BFD45 /* XZQWaveformView.m */,
 			);
 			path = "08AVFoundation读取与写入媒体";
 			sourceTree = "<group>";
@@ -343,11 +363,15 @@
 			files = (
 				F0D37644243310940025E233 /* XZQScanController.m in Sources */,
 				F01E81D2241F78D1009CC20B /* ViewController.m in Sources */,
+				F0C8D6BD243C32E4008BFD45 /* CreateAudioWaveformUtil.m in Sources */,
 				F0951046242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m in Sources */,
 				F01E81CC241F78D1009CC20B /* AppDelegate.m in Sources */,
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
+				F0C8D6BA243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m in Sources */,
 				F07850C92429DA7D00898FC9 /* XZQAVkitController.m in Sources */,
+				F0C8D6C3243C55E0008BFD45 /* XZQWaveformView.m in Sources */,
 				F0A1F3C9242B46C000203A07 /* XZQVideoCaptureController.m in Sources */,
+				F0C8D6C0243C54F1008BFD45 /* CreateAudioWaveformFilter.m in Sources */,
 				F0D25DF72434633300CADE66 /* XZQReadAndWriteMediaController.m in Sources */,
 				F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */,
 				F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */,

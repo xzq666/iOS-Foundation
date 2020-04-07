@@ -229,7 +229,7 @@
         [fileManager createDirectoryAtPath:directionPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     // 保存的视频文件路径
-    NSString *storePath = [directionPath stringByAppendingPathComponent:@"copy1.mp4"];
+    NSString *storePath = [directionPath stringByAppendingPathComponent:@"copy2.mp4"];
     if (storePath) {
         NSError *error;
         self.assetWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:storePath] fileType:AVFileTypeQuickTimeMovie error:&error];

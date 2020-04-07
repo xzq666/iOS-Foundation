@@ -25,3 +25,22 @@ AVAssetWriter可以自动支持交叉媒体样本。AVAssetWriterInput提供一�
 AVAssetWriter可用于实时操作和离线操作两种情况。对于每个场景中都有不同的方法将样本buffer添加到写入对象的输入中。<br/>
 1、实时：处理实时资源时，比如从AVCaptureVideoDataOutput写入捕捉的样本时，AVAssetWriter应该令expectsMediaDataInRealTime为YES来确保readyForMoreMediaData值被正确计算。从实时资源写入数据优化了写入器，与维持理想交错效果相比，快速写入样本具有更高的优先级。<br/>
 2、离线：当从离线资源中读取媒体资源时，比如从AVAssetReader读取样本buffer，在附加样本前仍需写入器输入的readyForMoreMediaData属性的状态，不过可以使用requestMediaDataWhenReadyOnQueue:usingBlock:方法控制数据的提供。传到这个方法中的代码块会随写入器输入准备附加更多的样本而不断被调用。添加样本时需要检索数据并从资源中找到下一个样本进行添加。
+
+
+### 创建音频波形(waveform)视图
+
+绘制波形有三个步骤：<br/>
+一、读取，读取音频样本进行渲染。需要读取或可能解压缩音频数据。<br/>
+二、缩减，实际读取到的样本数量要远比在屏幕上渲染的多。缩减过程必须作用于样本集，将样本总量分为小的样本块，并在每个样本块上找到最大的样本、所有样本的平均值或min/max值。<br/>
+三、渲染，将缩减后的样本呈现在屏幕上。通常用到Quartz框架，可以使用苹果支持的绘图框架。如何绘制这些数据的类型取决于如何缩减样本。采用min/max对，则为它的每一对绘制一条垂线。如果使用每个样本块平均值或最大值，使用Quartz Bezier路径绘制波形。<br/>
+
+1、读取音频样本 -- 提取全部样本集合<br/>
+1）加载AVAsset资源轨道数据；<br/>
+2）加载完成之后，创建AVAssertReader，并配置AVAssetReaderTrackOutput；<br/>
+3）AVAssertReader读取数据，并将读取到的样本数据添加到NSData实例后面。<br/>
+
+2、缩减音频样本<br/>
+根据指定压缩空间压缩样本。即将总样本分块，取每块子样本最大值，重新组成新的音频样本集合。<br/>
+
+3、渲染音频样本<br/>
+将筛选出来的音频样本数据，绘制成波形图。可以使用Quartz的Bezier绘制。

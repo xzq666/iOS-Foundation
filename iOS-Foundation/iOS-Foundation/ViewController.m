@@ -15,6 +15,7 @@
 #import "XZQVideoCaptureController.h"
 #import "XZQScanController.h"
 #import "XZQReadAndWriteMediaController.h"
+#import "XZQCreateAudioWaveformController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -35,7 +36,8 @@
                       @"05 AVKit用法",
                       @"06 AVFoundation捕捉媒体",
                       @"07 AVFoundation机器码识别",
-                      @"08 AVFoundation读取与写入媒体"];
+                      @"08-1 AVFoundation读取与写入媒体",
+                      @"08-2 AVFoundation创建音频波形视图"];
     [self.view addSubview:self.tableView];
 }
 
@@ -137,6 +139,15 @@
             XZQReadAndWriteMediaController *readAndWriteMedia = [[XZQReadAndWriteMediaController alloc] init];
             readAndWriteMedia.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:readAndWriteMedia animated:YES completion:^{
+                
+            }];
+            break;
+        }
+            
+        case 8: {
+            XZQCreateAudioWaveformController *createAudioWaveform = [[XZQCreateAudioWaveformController alloc] init];
+            createAudioWaveform.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:createAudioWaveform animated:YES completion:^{
                 
             }];
             break;
