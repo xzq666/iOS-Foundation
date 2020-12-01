@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "XZQSpeechViewController.h"
+#import "XZQSpeechDemoController.h"
 #import "XZQPlayAndRecordViewController.h"
 #import "XZQLibraryAndMetaDataViewController.h"
 #import "XZQVideoPlayerController.h"
@@ -16,6 +17,7 @@
 #import "XZQScanController.h"
 #import "XZQReadAndWriteMediaController.h"
 #import "XZQCreateAudioWaveformController.h"
+#import "SpeechBubbleYourCell.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -73,7 +75,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0: {
-            XZQSpeechViewController *speech = [[XZQSpeechViewController alloc]init];
+            XZQSpeechDemoController *speech = [[XZQSpeechDemoController alloc]init];
             speech.modalPresentationStyle = UIModalPresentationFullScreen;
             [self presentViewController:speech animated:YES completion:^{
                 

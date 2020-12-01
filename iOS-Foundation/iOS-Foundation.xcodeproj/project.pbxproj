@@ -15,6 +15,10 @@
 		F01E81DA241F78D4009CC20B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01E81D8241F78D4009CC20B /* LaunchScreen.storyboard */; };
 		F01E81DD241F78D4009CC20B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81DC241F78D4009CC20B /* main.m */; };
 		F01E81E7241F89E7009CC20B /* XZQSpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */; };
+		F046D6B125354E8C0031C97B /* XZQSpeechDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = F046D6B025354E8C0031C97B /* XZQSpeechDemo.m */; };
+		F046D6B72535577B0031C97B /* SpeechBubbleMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F046D6B62535577B0031C97B /* SpeechBubbleMyCell.m */; };
+		F046D6BC2535587A0031C97B /* SpeechBubbleYourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F046D6BB2535587A0031C97B /* SpeechBubbleYourCell.m */; };
+		F046D6C0253578D30031C97B /* XZQSpeechDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F046D6BF253578D30031C97B /* XZQSpeechDemoController.m */; };
 		F07850C92429DA7D00898FC9 /* XZQAVkitController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07850C82429DA7D00898FC9 /* XZQAVkitController.m */; };
 		F0951043242C80FC00EEEF7C /* XZQSimpleCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0951042242C80FC00EEEF7C /* XZQSimpleCaptureController.m */; };
 		F0951046242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0951045242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m */; };
@@ -51,6 +55,14 @@
 		F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechViewController.h; sourceTree = "<group>"; };
 		F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechViewController.m; sourceTree = "<group>"; };
 		F03A504B242B2B71009ECAE1 /* AVFoundation捕捉媒体.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation捕捉媒体.md"; sourceTree = "<group>"; };
+		F046D6AF25354E8C0031C97B /* XZQSpeechDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechDemo.h; sourceTree = "<group>"; };
+		F046D6B025354E8C0031C97B /* XZQSpeechDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechDemo.m; sourceTree = "<group>"; };
+		F046D6B52535577B0031C97B /* SpeechBubbleMyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechBubbleMyCell.h; sourceTree = "<group>"; };
+		F046D6B62535577B0031C97B /* SpeechBubbleMyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechBubbleMyCell.m; sourceTree = "<group>"; };
+		F046D6BA2535587A0031C97B /* SpeechBubbleYourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeechBubbleYourCell.h; sourceTree = "<group>"; };
+		F046D6BB2535587A0031C97B /* SpeechBubbleYourCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeechBubbleYourCell.m; sourceTree = "<group>"; };
+		F046D6BE253578D30031C97B /* XZQSpeechDemoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQSpeechDemoController.h; sourceTree = "<group>"; };
+		F046D6BF253578D30031C97B /* XZQSpeechDemoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQSpeechDemoController.m; sourceTree = "<group>"; };
 		F07850C62429D77900898FC9 /* AVFoundation之AVKit用法.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AVFoundation之AVKit用法.md"; sourceTree = "<group>"; };
 		F07850C72429DA7D00898FC9 /* XZQAVkitController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XZQAVkitController.h; sourceTree = "<group>"; };
 		F07850C82429DA7D00898FC9 /* XZQAVkitController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZQAVkitController.m; sourceTree = "<group>"; };
@@ -148,9 +160,14 @@
 		F01E81E3241F7EA2009CC20B /* 01AVFoundation入门 */ = {
 			isa = PBXGroup;
 			children = (
+				F046D6B42535575D0031C97B /* View */,
 				F01E81E4241F7F47009CC20B /* AVFoundation入门.md */,
 				F01E81E5241F89E7009CC20B /* XZQSpeechViewController.h */,
 				F01E81E6241F89E7009CC20B /* XZQSpeechViewController.m */,
+				F046D6AF25354E8C0031C97B /* XZQSpeechDemo.h */,
+				F046D6B025354E8C0031C97B /* XZQSpeechDemo.m */,
+				F046D6BE253578D30031C97B /* XZQSpeechDemoController.h */,
+				F046D6BF253578D30031C97B /* XZQSpeechDemoController.m */,
 			);
 			path = "01AVFoundation入门";
 			sourceTree = "<group>";
@@ -167,6 +184,17 @@
 				F0951045242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m */,
 			);
 			path = "06AVFoundation捕捉媒体";
+			sourceTree = "<group>";
+		};
+		F046D6B42535575D0031C97B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F046D6B52535577B0031C97B /* SpeechBubbleMyCell.h */,
+				F046D6B62535577B0031C97B /* SpeechBubbleMyCell.m */,
+				F046D6BA2535587A0031C97B /* SpeechBubbleYourCell.h */,
+				F046D6BB2535587A0031C97B /* SpeechBubbleYourCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F07850C52429D73F00898FC9 /* 05AVFoundation之AVKit用法 */ = {
@@ -363,14 +391,18 @@
 			files = (
 				F0D37644243310940025E233 /* XZQScanController.m in Sources */,
 				F01E81D2241F78D1009CC20B /* ViewController.m in Sources */,
+				F046D6B125354E8C0031C97B /* XZQSpeechDemo.m in Sources */,
 				F0C8D6BD243C32E4008BFD45 /* CreateAudioWaveformUtil.m in Sources */,
 				F0951046242C81F200EEEF7C /* XZQPhotoVideoCaptureController.m in Sources */,
+				F046D6B72535577B0031C97B /* SpeechBubbleMyCell.m in Sources */,
 				F01E81CC241F78D1009CC20B /* AppDelegate.m in Sources */,
 				F01E81DD241F78D4009CC20B /* main.m in Sources */,
+				F046D6C0253578D30031C97B /* XZQSpeechDemoController.m in Sources */,
 				F0C8D6BA243C2ADC008BFD45 /* XZQCreateAudioWaveformController.m in Sources */,
 				F07850C92429DA7D00898FC9 /* XZQAVkitController.m in Sources */,
 				F0C8D6C3243C55E0008BFD45 /* XZQWaveformView.m in Sources */,
 				F0A1F3C9242B46C000203A07 /* XZQVideoCaptureController.m in Sources */,
+				F046D6BC2535587A0031C97B /* SpeechBubbleYourCell.m in Sources */,
 				F0C8D6C0243C54F1008BFD45 /* CreateAudioWaveformFilter.m in Sources */,
 				F0D25DF72434633300CADE66 /* XZQReadAndWriteMediaController.m in Sources */,
 				F0D1F82324234D1200F40ECF /* XZQLibraryAndMetaDataViewController.m in Sources */,

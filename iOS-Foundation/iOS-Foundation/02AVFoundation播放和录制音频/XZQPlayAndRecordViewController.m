@@ -51,9 +51,15 @@
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:nil];
         if (self.audioPlayer) {
             NSLog(@"准备播放");
+            // 使用prepareToPlay会取得需要的音频硬件并预加载Audio Queue的缓冲区
+            // 调用prepareToPlay是可选的，当调用play方法时会隐性激活，不过创建时准备播放器可以降低调用play方法和听到声音输出之间的延时
             [self.audioPlayer prepareToPlay];
             // 设置循环播放
             [self.audioPlayer setNumberOfLoops:-1];
+            // 设置允许设置速率
+            self.audioPlayer.enableRate = YES;
+            // 设置初始音量
+            self.audioPlayer.volume = 0.5;
         }
     }
 }
@@ -121,6 +127,28 @@
     stopBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:stopBtn];
     [stopBtn addTarget:self action:@selector(stopClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UISegmentedControl *rateSegment = [[UISegmentedControl alloc] initWithItems:@[@"x0.5", @"x1.0", @"x1.5", @"x2.0"]];
+    rateSegment.frame = CGRectMake(10, 300, 300, 30);
+    rateSegment.selectedSegmentIndex = 1;
+    [rateSegment addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:rateSegment];
+    
+    UISlider *volumnSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 350, 300, 30)];
+    [self.view addSubview:volumnSlider];
+    volumnSlider.minimumValue = 0.0;
+    volumnSlider.maximumValue = 1.0;
+    volumnSlider.value = 0.5;
+    [volumnSlider addTarget:self action:@selector(volumnChanged:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)valueChanged:(UISegmentedControl *)segment {
+    // 读取控件
+    [self adjustRate:(segment.selectedSegmentIndex + 1) * 0.5];
+}
+
+- (void)volumnChanged:(UISlider *)slider {
+    [self adjustVolumn:slider.value];
 }
 
 // 播放音频
@@ -135,6 +163,7 @@
 - (void)pauseClick {
     if (self.audioPlayer && [self.audioPlayer isPlaying]) {
         NSLog(@"暂停播放");
+        // 调用stop不会撤销调用prepareToPlay时所做的设置
         [self.audioPlayer pause];
     }
 }
@@ -143,10 +172,26 @@
 - (void)stopClick {
     if (self.audioPlayer) {
         NSLog(@"停止播放");
+        // 调用stop会撤销调用prepareToPlay时所做的设置
         [self.audioPlayer stop];
         // 如果停止我希望下次播放从头开始
         self.audioPlayer.currentTime = 0;
     }
+}
+
+// 调整播放率，允许用户在不改变音调的情况下调整播放率，从0.5（半速）到2.0（2倍速）
+- (void)adjustRate:(float)rate {
+    self.audioPlayer.rate = rate;
+}
+
+// 调整pan值，允许使用立体声播放声音，从-1.0(极左)到-2.0(极右)，默认值为0.0(居中)
+//- (void)adjustPan:(float)pan {
+//
+//}
+
+// 设置播放器音量，独立于系统音量，从0.0(静音)到1.0(最大音量)之间的浮点值
+- (void)adjustVolumn:(float)volumn {
+    self.audioPlayer.volume = volumn;
 }
 
 - (void)initRecorder:(NSURL *)recorderUrl withSettings:(NSDictionary *)settings {
